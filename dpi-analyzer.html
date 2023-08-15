@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Mouse DPI Calculator</title>
+</head>
+<body>
+    <h1>Mouse DPI Calculator</h1>
+    <p>Move your mouse to calculate the distance and DPI.</p>
+    <p id="distance">Distance: 0</p>
+    
+    <script>
+        let startX = null;
+        let startY = null;
+        let totalDistance = 0;
+        
+        document.addEventListener('mousemove', function(event) {
+            if (startX !== null && startY !== null) {
+                const distance = Math.sqrt(Math.pow(event.clientX - startX, 2) + Math.pow(event.clientY - startY, 2));
+                totalDistance += distance;
+                startX = event.clientX;
+                startY = event.clientY;
+                document.getElementById('distance').textContent = `Distance: ${totalDistance.toFixed(2)}`;
+            } else {
+                startX = event.clientX;
+                startY = event.clientY;
+            }
+        });
+    </script>
+</body>
+</html>
